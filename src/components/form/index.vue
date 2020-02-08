@@ -22,6 +22,7 @@
 import KInput from "@/components/form/KInput.vue";
 import KFormItem from "@/components/form/KFormItem.vue";
 import KForm from "@/components/form/KForm.vue";
+import Notice from "@/components/Notice.vue";
 export default {
   data() {
     return {
@@ -43,12 +44,11 @@ export default {
   methods: {
     login() {
       this.$refs["loginForm"].validate(valid => {
-        if (valid) {
-          alert("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
+        const notice = this.$create(Notice, {
+          title: "Alert",
+          message: valid ? "Success" : "Fail"
+        });
+        notice.show();
       });
     }
   }

@@ -7,8 +7,11 @@
 </template>
 
 <script>
+import emitter from "@/mixins/emitter";
+
 export default {
   inheritAttrs: false, //避免设置到根元素上
+  mixins: [emitter],
   props: {
     value: {
       type: String,
@@ -24,11 +27,11 @@ export default {
       // 派发一个input事件
       this.$emit("input", e.target.value);
       // 通知父级执行校验
-      this.$parent.$emit("validate");
+      // this.$parent.$emit("validate");
+      this.dispatch("KFormItem", "validate");
     }
   }
 };
 </script>
 
-<style scoped>
-</style> 
+<style scoped></style>
